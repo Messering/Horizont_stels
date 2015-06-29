@@ -45,9 +45,15 @@ public class MainMenuScreen implements Screen, InputProcessor {
         Gdx.input.setInputProcessor(this);
     }
 
+    public void SetCamera(float x, float y){
+        //	Log.e("size",Float.toString(x)+"-"+Float.toString(y));
+        this.camera.position.set(x, y, 0);
+        this.camera.update();
+    }
+
     private void loadTextures(){
 
-        bgTexture = new Texture(Gdx.files.internal("prodecular.jpg"));
+        bgTexture = new Texture(Gdx.files.internal("procedural.png"));
         textures.put("cover_button_start_up", new Texture(Gdx.files.internal("dw_game.jpg")));
         textures.put("cover_button_start_down", new Texture(Gdx.files.internal("st_game.jpg")));
     }
@@ -60,7 +66,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 
     }
     public void showBG(){
-        spriteBatch.draw(bgTexture,0, -32, 1024 , 512);
+        spriteBatch.draw(bgTexture,0, 0, 1024 , 512);
 
     }
 
@@ -71,6 +77,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
 
         return true;
     }
+
     @Override
     public void hide() {
         Gdx.input.setInputProcessor(null);
@@ -94,7 +101,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
     }
         @Override
         public void render(float delta) {
-           // SetCamera(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2f);
+           SetCamera(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2f);
             //this.cam.update();
             spriteBatch.setProjectionMatrix(this.camera.combined);
             //timeLeft+=delta;
@@ -103,11 +110,10 @@ public class MainMenuScreen implements Screen, InputProcessor {
             //Gdx.gl.glViewport(0, 0,1200,480);
 
             spriteBatch.begin();
-            game.font.draw(game.batch, "Welcome to Drop!!! ", 100, 150);
-            game.font.draw(game.batch, "Tap anywhere to begin!", 100, 100);
-
             showBG();
             showMenu();
+            /*game.font.draw(game.batch, "Welcome to Drop!!! ", 100, 150);
+            game.font.draw(game.batch, "Tap anywhere to begin!", 100, 100);*/
             spriteBatch.end();
         }
 
