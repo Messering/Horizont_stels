@@ -22,6 +22,7 @@ public class MyGdxGame extends Game{
 
 	@Override
 	public void render() {
+
 		super.render(); // важно!
 	}
 
